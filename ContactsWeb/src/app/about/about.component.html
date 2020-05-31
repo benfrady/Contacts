@@ -1,0 +1,26 @@
+<div class = "container spacer">
+  <div class="card bg-dark text-white">
+    <div class="card-body bold">Contact Details</div>
+    <div>
+      <p>
+  <img class="rounded-circle mr-3" height="50px" width="50px" alt="avatar" src="{{this.contactService.host+'/contacts/photo/'+contact.id}}" >
+     <i class="fa fa-upload " (click)="OnEditPhoto(contact)"> </i></p>
+    </div>
+    <p *ngIf="editPhoto && currentContact==contact">
+      <input type="file" (change)="onSelectedFile($event)">
+      <button class="btn btn-success" (click)="uploadPhoto()" >Upload</button>
+      {{this.progress}}
+    </p>
+  <div class="card-body" *ngIf="contact">
+    <h5 class="card-title card bg-primary text-white">{{contact.id}} : {{contact.nom}}</h5>
+    <p class="card-text"><strong>Name</strong> : {{contact.nom}}</p>
+    <p class="card-text"><strong>Last Name</strong> : {{contact.prenom}}</p>
+    <p class="card-text"><strong>Date of Birth</strong> : {{contact.dateNaissance.toString()}}</p>
+    <p class="card-text"><strong>Phone</strong> : {{contact.tel}}</p>
+    <p class="card-text"><strong>Email</strong> : {{contact.email}}</p>
+    <a href="#" routerLink="/contacts" class="btn btn-primary tab">Back</a>
+    <button class = "btn btn-primary tab" (click)="deleteContact()">Delete</button>
+    <button class = "btn btn-primary" (click)="ModifyContact(contact)">Modify</button>
+  </div>
+</div>
+</div>

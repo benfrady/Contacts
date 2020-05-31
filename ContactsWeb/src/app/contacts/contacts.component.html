@@ -1,0 +1,44 @@
+<div class = "container spacer">
+      <div>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <input matInput class="form-control mr-sm-2" placeholder="Search" [(ngModel)]="_filter" (keyup)="filterContacts(_filter)" >
+            <button class="btn btn-success" (click)="chercher(_filter)" >Search</button>
+        </nav>
+        <p>Filtered by: <strong>{{ _filter }}</strong></p>
+      </div>
+      <table class = "table table-striped">
+        <div *ngIf="contacts">
+        <tr>
+          <th>ID</th><th>Nom</th><th>Prénom</th><th>Tel</th><th>Email</th>
+        </tr>
+        <tr *ngFor="let c of filtredContacts">
+          <td>{{c.id}}</td>
+          <td>
+            <a (click)="getContactById(c.id)" class = "clickable text-primary">{{ c.nom | lowercase }}</a>
+          </td>
+          <td>{{c.prenom}}</td>
+          <td>{{c.tel}}</td>
+          <td>{{c.email}}</td>
+          <td>
+            <img height="50px" width="50px" src="{{this.contactService.host+'/contacts/photo/'+c.id}}" (click)="OnEditPhoto(c)">
+            <p *ngIf="editPhoto && currentContact==c">
+              <input type="file" (change)="onSelectedFile($event)">
+              <button class="btn btn-success" (click)="uploadPhoto()" >Upload</button>
+              {{this.progress}}
+            </p>
+          </td>
+        </tr>
+        </div>
+         </table>
+      <div class="container">
+          <nav>
+            <ul class="pagination">
+              <li class="page-item clickable"><a class="page-link" (click) = "gotoPage(i-1)">Prev</a></li>
+              <li class="page-item" [ngClass] = "{'active':n==currentPage}"  *ngFor="let p of pages; let n=index" >
+                <a class="page-link clickable" (click) = "gotoPage(n)">{{n}}</a>
+              </li>
+              <li class="page-item clickable"><a class="page-link" (click) = "gotoPage(i+1)">Next</a></li>
+            </ul>
+          </nav>
+      </div>
+</div>

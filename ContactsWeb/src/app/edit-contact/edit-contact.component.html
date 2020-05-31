@@ -1,0 +1,33 @@
+<div class = "container spacer">
+  <div class="card bg-dark text-white">
+    <div class="card-body">Update Contact</div>
+  </div>
+
+  <div class="card">
+    <div class="card-body" *ngIf="contact">
+      <div class = "form-group active">
+        <label class = "control-label">Name:</label>
+        <input matInput class = "form-control" type = "text"  [(ngModel)]="contact.nom">
+      </div>
+      <div class = "form-group active">
+        <label class = "control-label">Last Name:</label>
+        <input class = "form-control" type = "text" [(ngModel)]="contact.prenom">
+      </div>
+      <div class = "form-group active">
+        <label class = "control-label">Email:</label>
+        <input class = "form-control" placeholder="example@gmail.com" type = "text" [(ngModel)]="contact.email">
+      </div>
+      <div class = "form-group active">
+        <label class = "control-label">Phone:</label>
+        <input class = "form-control" type = "text" [(ngModel)]="contact.tel">
+      </div>
+      <div class = "form-group active">
+        <label class = "control-label">Date of Birth:</label>
+        <input class = "form-control" type = "date" [(ngModel)]="contact.dateNaissance">
+      </div>
+      <div class = "spacer">
+        <button class = "btn btn-primary"  (click) = "updateContact()">Save Contact</button>
+      </div>
+
+  </div>
+</div>

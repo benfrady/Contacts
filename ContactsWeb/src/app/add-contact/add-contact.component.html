@@ -1,0 +1,63 @@
+<div class = "container spacer">
+  <div class="card bg-dark text-white">
+    <div class="card-body">Add New Contact</div>
+  </div>
+
+  <div class="card">
+    <div class="card-body" >
+      <form #form="ngForm" (ngSubmit)="onSaveContact(form.value)">
+        <div class = "form-group">
+          <label class ="control-label">Name :</label>
+          <input class = "form-control" type = "text" ngModel  #nom="ngModel" name="name" required minlength="4">
+          <div *ngIf="nom.invalid && (nom.dirty || nom.touched)"
+               class="alert alert-danger">
+
+            <div *ngIf="nom.errors.required">
+              Name is required.
+            </div>
+            <div *ngIf="nom.errors.minlength">
+              Name must be at least 4 characters long.
+            </div>
+          </div>
+        </div>
+        <div class = "form-group">
+          <label class ="control-label">Last Name :</label>
+          <input class = "form-control" type = "text" ngModel #lastName="ngModel" name="lastName" required minlength="4">
+          <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+               class="alert alert-danger">
+
+            <div *ngIf="lastName.errors.required">
+              lastName is required.
+            </div>
+            <div *ngIf="lastName.errors.minlength">
+              lastName must be at least 4 characters long.
+            </div>
+          </div>
+        </div>
+        <div class = "form-group">
+          <label class ="control-label">Date of Birth :</label>
+          <input class = "form-control" type = "date" ngModel name="date" required>
+        </div>
+        <div class = "form-group">
+          <label class ="control-label">Phone :</label>
+          <input class = "form-control" type = "text" ngModel name="phone" required>
+        </div>
+        <div class = "form-group">
+          <label class ="control-label">Email :</label>
+          <input class = "form-control" type = "email" #email="ngModel" placeholder="example: name@gmail.com" ngModel name="email" required>
+        </div>
+
+        <div *ngIf="email.invalid && (email.dirty || email.touched)"
+             class="alert alert-danger">
+          <div *ngIf="email.control.valueChanges">
+            mail should be in the form "example@gmail.com.
+          </div>
+        </div>
+
+
+        <button [disabled]="!form.valid" type = "submit" class = "btn btn-primary spacer">Save Contact</button>
+      </form>
+
+    </div>
+  </div>
+    </div>
